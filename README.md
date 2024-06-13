@@ -1,2 +1,3 @@
-# ggrr
-Gear Gardian and Recall Radar all stop shop for PPE equipment reviews and manufacture safty notices and recalls
+# Gear Guardian & Recall Radar
+
+- A place where you can get reviews on P.P.E equipment and manufacturers can go to inform customers of safety notices and equipment recalls.
