@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
+</head>
+<body>
+    <h1>PPE Equipment Reviews</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home_page' %}">Home</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'main_page' %}">Reviews</a></li>
+        </ul>
+    </nav>
+
+    <h2>All Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <h3>{{ review.title }}</h3>
+                <p>{{ review.content }}</p>
+                <small>Reviewed by: {{ review.author }}</small>
+            </li>
+        {% empty %}
+            <li>No reviews yet. Be the first to review!</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

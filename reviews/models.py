@@ -1,39 +1,36 @@
 from django.db import models
-
-# Create your models here.
-
-
-# class Customer(models.Model):
-#     name = models.CharField('Customer', max_length=120)
-#     age = models.IntegerField()
-#     email = models.EmailField(max_length=255, blank=True, null=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#     role = models.CharField(max_length=255, choices=[('admin', 'Admin'), ('user', 'User')], default='user')
-
-#     TYPE_CHOICES = (
-#         ('Customer', 'Customer'),
-#         ('Manufacturer', 'Manufacturer'),
-#         ('Guest', 'Guest'),
-#     )
-#     type = models.CharField(choices=TYPE_CHOICES)
-
-#     def __str__(self):
-#         return self.name
-
-
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.conf import settings
 
-
+# Refactored Customer model inheriting from AbstractUser
 class Customer(AbstractUser):
-    # Add additional roles or fields if needed
     USER_ROLES = (
         ('admin', 'Admin'),
         ('user', 'User'),
-        ('guest', 'Guest'),  # Even though guests typically won't have an account
+        ('guest', 'Guest'),
     )
     role = models.CharField(max_length=10, choices=USER_ROLES, default='user')
 
     def __str__(self):
         return self.username
+
+# Review model with a ForeignKey to the Customer model
+class Review(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Equipment(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    manufacturer = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
