@@ -3,32 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
+    <title>Home Page</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
 </head>
 <body>
-    <h1>PPE Equipment Reviews</h1>
-    <nav>
-        <ul>
-            <li><a href="{% url 'home_page' %}">Home</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'main_page' %}">Reviews</a></li>
-        </ul>
-    </nav>
+    <header>
+        <h1>Gear Gaurdian & Recall Radar</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home_page' %}">Home</a></li>
+                <li><a href="{% url 'main_page' %}">Reviews</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h2>All Reviews</h2>
-    <ul>
-        {% for review in reviews %}
-            <li>
-                <h3>{{ review.title }}</h3>
-                <p>{{ review.content }}</p>
-                <small>Reviewed by: {{ review.author }}</small>
-            </li>
-        {% empty %}
-            <li>No reviews yet. Be the first to review!</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <section class="hero">
+            <h2>Your go-to platform for reviewing personal protective equipment</h2>
+            <p>Discover the best PPE equipment for your needs.</p>
+            <!-- Placeholder for Hero Image -->
+            <div class="hero-image">
+                <img src="{% static 'reviews/hero-placeholder.jpg' %}" alt="Hero Image">
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Latest Reviews</h2>
+            <div class="reviews-list">
+                {% for review in reviews %}
+                    <div class="review">
+                        <h3>{{ review.title }}</h3>
+                        <p>{{ review.content }}</p>
+                        <p>Reviewed by {{ review.author.username }} on {{ review.created_at }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 PPE Equipment Reviews</p>
+    </footer>
 </body>
 </html>

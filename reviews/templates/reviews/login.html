@@ -8,11 +8,23 @@
     <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+    <header>
+        <h1>Login</h1>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Login to Your Account</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 PPE Equipment Reviews</p>
+    </footer>
 </body>
 </html>

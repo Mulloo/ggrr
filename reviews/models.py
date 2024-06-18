@@ -2,17 +2,19 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
+
 # Refactored Customer model inheriting from AbstractUser
 class Customer(AbstractUser):
     USER_ROLES = (
-        ('admin', 'Admin'),
-        ('user', 'User'),
-        ('guest', 'Guest'),
+        ("admin", "Admin"),
+        ("user", "User"),
+        ("guest", "Guest"),
     )
-    role = models.CharField(max_length=10, choices=USER_ROLES, default='user')
+    role = models.CharField(max_length=10, choices=USER_ROLES, default="user")
 
     def __str__(self):
         return self.username
+
 
 # Review model with a ForeignKey to the Customer model
 class Review(models.Model):

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from .forms import CustomerCreationForm, CustomerLoginForm, EquipmentForm
-from .models import Equipment
-
+from .models import Equipment, Review
 
 # Create your views here.
+
 
 def home_page(request):
     return render(request, 'reviews/home_page.html')
@@ -35,17 +35,19 @@ def user_login(request):
 
 
 def main_page(request):
-    reviews = reviews.view.object.all()
-    return render(request, 'reviews/main_page.html', {'reviews':reviews})
+    reviews = Review.objects.all()
+    return render(request, 'reviews/main_page.html', {'reviews': reviews})
 
 
 def equipment_list(request):
-    equipment = Equipment.object.all()
-    return render(request, 'reviews/equipment_list.html', {'equipment':equipment})
+    equipment = Equipment.objects.all()
+    return render(request, 'reviews/equipment_list.html', {'equipment': equipment})
+
 
 def equipment_detail(request, id):
     equipment = get_object_or_404(Equipment, id=id)
     return render(request, 'reviews/equipment_detail.html', {'equipment': equipment})
+
 
 def add_equipment(request):
     if request.method == 'POST':
