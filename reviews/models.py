@@ -1,28 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.conf import settings
 
 
-# Refactored Customer model inheriting from AbstractUser
-class Customer(AbstractUser):
-    USER_ROLES = (
-        ("admin", "Admin"),
-        ("user", "User"),
-        ("guest", "Guest"),
-    )
-    role = models.CharField(max_length=10, choices=USER_ROLES, default="user")
-
-    def __str__(self):
-        return self.username
 
 
-# Review model with a ForeignKey to the Customer model
+
 class Review(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     content = models.TextField()
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    equipment = models.ForeignKey('Equipment', on_delete=models.CASCADE)
     def __str__(self):
         return self.title
 
@@ -34,5 +23,8 @@ class Equipment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    
     def __str__(self):
         return self.name
+
+

@@ -1,13 +1,7 @@
 from django.contrib import admin
-from .models import Customer, Review, Equipment
+from .models import User, Review, Equipment
 
 # Register your models here.
-
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'role')
-    search_fields = ('username', 'email')
-    list_filter = ('role',)
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

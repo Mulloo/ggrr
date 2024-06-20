@@ -1,7 +1,8 @@
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login
-from .forms import CustomerCreationForm, CustomerLoginForm, EquipmentForm
-from .models import Equipment, Review
+from django.contrib.auth import authenticate, login
+from .forms import UserCreationForm, UserLoginForm, ReviewForm
+from .models import Review, Equipment
 
 # Create your views here.
 
@@ -12,27 +13,36 @@ def home_page(request):
 
 def register(request):
     if request.method == 'POST':
-        form = CustomerCreationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            messages.success(request, 'You are now registered!')
+            return redirect('home_page') 
     else:
-        form = CustomerCreationForm()
+        form = UserCreationForm()
     return render(request, 'reviews/register.html', {'form': form})
 
 
-def user_login(request):
+def login_view(request):
     if request.method == 'POST':
-        form = CustomerLoginForm(data=request.POST)
+        form = UserLoginForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('index')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                message = f'You are now logged in as {username}'
+                return redirect('home_page')
+            else:
+                form.add_error(None, 'Invalid username or password')
+        else:
+            form = UserLoginForm()
+        return render(request, 'reviews/login.html', {'form': form})
     else:
-        form = CustomerLoginForm()
+        form = UserLoginForm()
     return render(request, 'reviews/login.html', {'form': form})
-
 
 def main_page(request):
     reviews = Review.objects.all()
@@ -49,12 +59,14 @@ def equipment_detail(request, id):
     return render(request, 'reviews/equipment_detail.html', {'equipment': equipment})
 
 
-def add_equipment(request):
+def add_review(request):
     if request.method == 'POST':
-        form = EquipmentForm(request.POST)
+        form = ReviewForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('equipment_list')
+            review = form.save(commit=False)
+            review.author = request.user  
+            review.save()
+            return redirect('main_page')
     else:
-        form = EquipmentForm()
-    return render(request, 'reviews/add_equipment.html', {'form': form})
+        form = ReviewForm()
+    return render(request, 'reviews/add_review.html', {'form': form})

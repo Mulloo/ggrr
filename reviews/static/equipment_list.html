@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Equipment List</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home_page' %}">Home</a></li>
+                <li><a href="{% url 'main_page' %}">Reviews</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Available Equipment</h2>
+        <ul>
+            {% for item in equipment %}
+                <li>
+                    <a href="{% url 'equipment_detail' item.id %}">{{ item.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Gear Guardian & Recall Radar</p>
+    </footer>
+</body>
+</html>

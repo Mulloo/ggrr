@@ -1,21 +1,21 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Customer, Equipment
+from .models import User, Review
 
 
-class CustomerCreationForm(UserCreationForm):
+class UserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
     class Meta(UserCreationForm.Meta):
-        model = Customer
-        fields = UserCreationForm.Meta.fields + ('role',)
+        model = User
+        fields = UserCreationForm.Meta.fields + ('email',)
 
 
-class CustomerLoginForm(AuthenticationForm):
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(max_length=255, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+    
+class ReviewForm(forms.ModelForm):
     class Meta:
-        model = Customer
-        fields = ['username', 'password']
-
-
-class EquipmentForm(forms.ModelForm):
-    class Meta:
-        model = Equipment
-        fields = ['name', 'description', 'manufacturer']
+        model = Review
+        fields = ['title', 'content']
