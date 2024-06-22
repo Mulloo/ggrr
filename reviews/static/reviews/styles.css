@@ -17,12 +17,27 @@ header h1 {
     margin: 0;
 }
 
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
 header nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+}
+
+header nav ul.nav-left {
+    justify-content: flex-start;
+}
+
+header nav ul.nav-right {
+    justify-content: flex-end;
+    margin-left: auto;
 }
 
 header nav ul li {
