@@ -5,8 +5,8 @@ from .models import  Review, Equipment
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'created_at')
-    search_fields = ('title', 'author__username')
+    list_display = ('equipment', 'user', 'created_at')
+    search_fields = ('equipment', 'user')
     list_filter = ('created_at',)
 
 
