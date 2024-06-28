@@ -13,8 +13,12 @@ import django_heroku
 import os
 import dj_database_url
 
+
+# Activate django-heroku
 django_heroku.settings(locals())
 
+# Define base_dir
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 if os.path.exists("env.py"):
     import env
