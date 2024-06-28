@@ -9,9 +9,12 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import django_heroku 
 import os
 import dj_database_url
+
+django_heroku.settings(locals())
+
 
 if os.path.exists("env.py"):
     import env
@@ -36,6 +39,7 @@ DEBUG = os.environ.get("DEBUG") == "True"
 ALLOWED_HOSTS = [
     "8000-mulloo-ggrr-8speny9miq9.ws-eu114.gitpod.io",
     "localhost",
+    "your-heroku-app-name.herokuapp.com"
 ]
 
 
@@ -60,6 +64,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "gear_guardian_recall_radar.urls"
