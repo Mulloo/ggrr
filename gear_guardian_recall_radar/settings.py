@@ -38,7 +38,7 @@ DEBUG = os.environ.get("DEBUG") == "True"
 ALLOWED_HOSTS = [
     "8000-mulloo-ggrr-8speny9miq9.ws-eu114.gitpod.io",
     "localhost",
-    "your-heroku-app-name.herokuapp.com"
+    "gear-guardian.herokuapp.com"
 ]
 
 
