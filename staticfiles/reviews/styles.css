@@ -17,12 +17,27 @@ header h1 {
     margin: 0;
 }
 
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
 header nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+}
+
+header nav ul.nav-left {
+    justify-content: flex-start;
+}
+
+header nav ul.nav-right {
+    justify-content: flex-end;
+    margin-left: auto;
 }
 
 header nav ul li {
@@ -196,4 +211,27 @@ footer {
 
 .form-container button:hover {
     background-color: #45a049;
+}
+
+.messages {
+    margin: 20px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
