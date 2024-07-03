@@ -5,19 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Gear Guardian & Recall Radar{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'home_page' %}">Home</a></li>
-            <li><a href="{% url 'main_page' %}">Reviews</a></li>
-            <li><a href="{% url 'add_review' %}">Add Review</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-        </ul>
-    </nav>
+    <header>
+        <h1>Gear Guardian & Recall Radar</h1>
+        <nav>
+            <ul class="nav-left">
+                <li><a href="/">Home</a></li>
+            </ul>
+            <ul class="nav-right">
+                {% if user.is_authenticated %}
+                    <li><a href="#">Hello, {{ user.username }}</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="hero-image">
+            <img src="{% static 'img/heroimage.webp' %}" alt="Hero Image">
+        </div>
+    </header>
     {% block content %}
     {% endblock %}
+    <footer>
+        <p>&copy; 2024 Gear Guardian & Recall Radar</p>
+    </footer>
+    <script src="{% static '/static/js/scripts.js' %}"></script>
 </body>
 </html>
