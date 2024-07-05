@@ -84,7 +84,6 @@ header nav ul li a:hover {
 
 .reviews-list {
     max-height: 400px;
-    /* Adjust as needed */
     overflow-y: scroll;
     border: 1px solid #ddd;
     padding: 10px;

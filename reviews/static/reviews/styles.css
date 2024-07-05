@@ -10,18 +10,18 @@ header {
     background-color: #4CAF50;
     color: white;
     padding: 10px 0;
-    text-align: center;
 }
 
 header h1 {
     margin: 0;
+    text-align: center;
 }
 
 header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 header nav ul {
@@ -42,12 +42,22 @@ header nav ul.nav-right {
 
 header nav ul li {
     margin: 0 15px;
+    display: flex;
+    align-items: center;
 }
 
 header nav ul li a {
     color: white;
     text-decoration: none;
+    padding: 5px 0px;
+    line-height: 1.5;
+}
+
+header nav ul li p {
+    color: white;
+    text-decoration: none;
     padding: 5px 10px;
+    line-height: 1.5;
 }
 
 header nav ul li a:hover {
@@ -84,7 +94,6 @@ header nav ul li a:hover {
 
 .reviews-list {
     max-height: 400px;
-    /* Adjust as needed */
     overflow-y: scroll;
     border: 1px solid #ddd;
     padding: 10px;
@@ -120,7 +129,6 @@ header nav ul li a:hover {
     text-align: center;
 }
 
-/* Navigation buttons */
 .prev,
 .next {
     cursor: pointer;
@@ -151,7 +159,6 @@ header nav ul li a:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Show the first slide by default */
 .slideshow-container .slide:first-child {
     display: block;
 }
@@ -166,7 +173,6 @@ footer {
     bottom: 0;
 }
 
-/* Form styles */
 .form-container {
     max-width: 400px;
     margin: 0 auto;
@@ -234,4 +240,52 @@ footer {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container form .form-control {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container form .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container form .submit-btn:hover {
+    background-color: #45a049;
 }

@@ -1,51 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Review</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Add a Review</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home_page' %}">Home</a></li>
-                <li><a href="{% url 'main_page' %}">Reviews</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="#">Hello, {{ user.username }}</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-    <body>  
+{% extends 'base.html' %}
+
+{% block title %}Post Review{% endblock %}
+
+{% block content %}
+<div class="container-review">
+    <div class="form-container">
+        <a href="{% url 'reviews:equipment_detail' equipment.id %}" class="btn back-link">Go back</a>
+        
+        <h2>Post Your Review for {{ equipment.name }}</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit Review</button>
+            <button type="submit" class="btn submit-btn">Submit Review</button>
         </form>
-    </body>
-
-
-    <div class="container">
-        <div class="form-container">
-            <h2>Post Your Review for {{ equipment.name }}</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Submit Review</button>
-            </form>
-        </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Gear Guardian & Recall Radar</p>
-    </footer>
-</body>
-</html>
+</div>
+{% endblock %}

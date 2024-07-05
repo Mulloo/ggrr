@@ -1,35 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipment Detail</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Equipment Detail</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home_page' %}">Home</a></li>
-                <li><a href="{% url 'main_page' %}">Reviews</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'base.html' %}
 
-    <div class="container">
-        <h2>{{ equipment.name }}</h2>
-        <p>{{ equipment.description }}</p>
-        <p>Manufactured by: {{ equipment.manufacturer }}</p>
-        <p>Created at: {{ equipment.created_at }}</p>
-        <p>Last updated: {{ equipment.updated_at }}</p>
-    </div>
+{% block title %}Equipment Detail{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 Gear Guardian & Recall Radar</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+<a class="btn btn-primary" href="{% url 'reviews:add_review' equipment_id=equipment.id %}">Add Review</a>
+<div class="container">
+    <h2>{{ equipment.name }}</h2>
+    <p>{{ equipment.description }}</p>
+    <p>Manufactured by: {{ equipment.manufacturer }}</p>
+    <p>Created at: {{ equipment.created_at }}</p>
+    <p>Last updated: {{ equipment.updated_at }}</p>
+</div>
+<div class="container">
+    <h2>Reviews</h2>
+        <div class="reviews-list">
+            {% for review in reviews %}
+                <div class="review">
+                    <p>{{ review.review_text }}</p>
+                    <p>Reviewed by {{ review.user.username }} on {{ review.created_at }}</p>
+                    <p>Rating: {{ review.rating }}</p>
+                    {% if user == review.user %}
+                        <a href="{% url 'reviews:edit_review' review.id %}">Edit</a>
+                        <a href="{% url 'reviews:delete_review' review.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}

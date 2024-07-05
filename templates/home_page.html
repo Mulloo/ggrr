@@ -7,9 +7,6 @@
     <section class="hero">
         <h2>Your go-to platform for reviewing personal protective equipment</h2>
         <p>Discover the best PPE equipment for your needs.</p>
-        {% comment %} <div class="hero-image">
-            <img src="{% static 'img/heroimage.webp' %}" alt="Hero Image">
-        </div> {% endcomment %}
     </section>
 
     <section class="reviews">
@@ -17,9 +14,12 @@
         <div class="reviews-list">
             {% for review in reviews %}
                 <div class="review">
-                    <h3>{{ review.title }}</h3>
-                    <p>{{ review.content }}</p>
-                    <p>Reviewed by {{ review.author.username }} on {{ review.created_at }}</p>
+                    <a href="{% url 'reviews:equipment_detail' equipment_id=review.equipment.id %}">{{ review.equipment.name }}</a>
+                    
+                    <h3> Manufacturer: </h3><p>{{ review.equipment.manufacturer }}</p>
+                    <h3>{{ review.equipment.created_at }}</h3>
+                    <p>{{ review.review_text }}</p>
+                    <p>Reviewed by {{ review.user.username }} on {{ review.created_at }}</p>
                 </div>
             {% endfor %}
         </div>

@@ -1,9 +1,9 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
 
-# Create your models here.
 class Equipment(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
@@ -19,7 +19,9 @@ class Review(models.Model):
     equipment = models.ForeignKey("Equipment", on_delete=models.CASCADE, default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review_text = models.TextField()
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(5)]
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
