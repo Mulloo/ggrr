@@ -1,39 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Gear Guardian & Recall Radar{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        Gear Guardian & Recall Radar
+      {% endblock %}
+    </title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
     <header>
-        <h1>Gear Guardian & Recall Radar</h1>
-        <nav>
-            <ul class="nav-left">
-                <li><a href="/">Home</a></li>
-            </ul>
-            <ul class="nav-right">
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'reviews:equipment_detail' equipment_id=1 %}">Reviews</a></li>
-                    <li><p>Hello, {{ user.username }}</p></li>
-                    <li class="logout"><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+      <h1>Gear Guardian & Recall Radar</h1>
+      <nav>
+        <ul class="nav-left">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <form method="post" id="write-review-form" onsubmit="updateWriteReviewFormAction()" class="review-form">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="equipment_id" class="form-label">Write Review of:</label>
+              <select name="equipment_id" id="equipment_id_right" class="custom-dropdown">
+                {% for equipment in equipment_list %}
+                  <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                {% endfor %}
+              </select>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </ul>
+        <ul class="nav-right">
+          {% if user.is_authenticated %}
+            <li>
+                <form method="post" id="write-review-form" onsubmit="updateWriteReviewFormAction()" class="review-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="equipment_id" class="form-label">View Reviews of:</label>
+                      <select name="equipment_id" id="equipment_id_right" class="custom-dropdown">
+                        {% for equipment in equipment_list %}
+                          <option value="{{ equipment.id }}">{{ equipment.name }}</option>
+                        {% endfor %}
+                      </select>
+                      <button type="submit">Submit</button>
+                    </div>
+                  </form>
+            </li>
+            <li>
+              <p>Hello, {{ user.username }}</p>
+            </li>
+            <li class="logout">
+              <a href="{% url 'logout' %}">Logout</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{% url 'login' %}">Login</a>
+            </li>
+            <li>
+              <a href="{% url 'register' %}">Register</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
     </header>
     <div class="hero-image">
-        <img src="{% static 'img/heroimage.webp' %}" alt="Hero Image">
+      <img src="{% static 'img/heroimage.webp' %}" alt="Hero Image" />
     </div>
     {% block content %}
+
     {% endblock %}
     <footer>
-        <p>&copy; 2024 Gear Guardian & Recall Radar</p>
+      <p>&copy; 2024 Gear Guardian & Recall Radar</p>
     </footer>
-    <script src="{% static '/static/js/scripts.js' %}"></script>
-</body>
+    {% comment %} <script src="{% static '/static/js/scripts.js' %}"></script> {% endcomment %}
+    <script>
+      function updateWriteReviewFormAction() {
+        const select = document.getElementById('equipment_id_right')
+        const form = document.getElementById('write-review-form')
+        const selectedEquipmentId = select.value
+        form.action = `{% url 'reviews:add_review' equipment_id=0 %}`.replace('0', selectedEquipmentId)
+      }
+    </script>
+  </body>
 </html>

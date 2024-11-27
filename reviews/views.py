@@ -10,9 +10,14 @@ def home_page(request):
     return render(request, "../templates/home_page.html", {"reviews": reviews})
 
 
-def equipment_list(request):
-    equipment = Equipment.objects.all()
-    return render(request, "reviews/equipment_list.html", {"equipment": equipment})
+def some_view(request):
+    equipment_list = Equipment.objects.all()
+    context = {
+        'equipment_list': equipment_list,
+        
+    }
+    return render(request, 'base.html', context)
+
 
 
 @login_required
@@ -28,9 +33,7 @@ def add_review(request, equipment_id):
             return redirect("reviews:equipment_detail", equipment_id=equipment.id)
     else:
         form = ReviewForm()
-    return render(
-        request, "reviews/add_review.html", {"form": form, "equipment": equipment}
-    )
+    return render(request, "reviews/add_review.html", {"form": form, "equipment": equipment})
 
 
 @login_required

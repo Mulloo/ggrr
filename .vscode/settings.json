@@ -2,10 +2,15 @@
     "cSpell.words": [
         "ecommerce",
         "ggrr",
+        "Gunicorn",
         "herokuapp",
         "mulloo",
         "pyexpat",
         "speny",
-        "wireframe"
-    ]
+        "whitenoise",
+        "wireframe",
+        "Wireframes"
+    ],
+    "editor.rulers": [79, 99],
+    "editor.wordWrap": "on"
 }

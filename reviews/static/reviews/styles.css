@@ -4,24 +4,27 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     background-color: #4CAF50;
     color: white;
     padding: 10px 0;
+    text-align: center;
 }
 
 header h1 {
     margin: 0;
-    text-align: center;
 }
 
 header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 header nav ul {
@@ -42,27 +45,24 @@ header nav ul.nav-right {
 
 header nav ul li {
     margin: 0 15px;
-    display: flex;
-    align-items: center;
 }
 
 header nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 5px 0px;
-    line-height: 1.5;
-}
-
-header nav ul li p {
-    color: white;
-    text-decoration: none;
     padding: 5px 10px;
-    line-height: 1.5;
 }
 
 header nav ul li a:hover {
     background-color: #45a049;
     border-radius: 5px;
+}
+
+header nav ul li p {
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    padding: 5px 10px;
 }
 
 .container {
@@ -72,6 +72,7 @@ header nav ul li a:hover {
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    flex: 1;
 }
 
 .hero {
@@ -79,13 +80,30 @@ header nav ul li a:hover {
 }
 
 .hero-image {
-    margin-top: 20px;
+    margin-top: 10px;
+    max-width: 100%;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .hero-image img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+/* Adjusted for review form page */
+.smaller-hero .hero-image {
+    max-width: 50%;
+    margin: 20px auto;
+}
+
+.smaller-hero .hero-image img {
+    border-radius: 15px;
 }
 
 .reviews {
@@ -168,11 +186,12 @@ footer {
     padding: 10px 0;
     background-color: #333;
     color: white;
-    position: fixed;
     width: 100%;
-    bottom: 0;
+    margin-top: auto;
+    position: relative;
 }
 
+/* Form styles */
 .form-container {
     max-width: 400px;
     margin: 0 auto;
@@ -219,6 +238,7 @@ footer {
     background-color: #45a049;
 }
 
+/* Messages */
 .messages {
     margin: 20px;
 }
@@ -242,16 +262,30 @@ footer {
     border-color: #ebccd1;
 }
 
-.back-link {
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
     display: inline-block;
-    margin-bottom: 20px;
-    color: #4CAF50;
     text-decoration: none;
-    font-weight: bold;
 }
 
-.back-link:hover {
-    text-decoration: underline;
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn-danger {
+    background-color: red !important;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
 }
 
 .form-container {
@@ -277,15 +311,75 @@ footer {
     border-radius: 4px;
 }
 
-.form-container form .submit-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    resize: vertical;
+
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-container form .submit-btn:hover {
+textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+    outline: none;
+}
+
+
+.custom-dropdown {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: auto;
+    max-width: 250px;
+}
+
+.custom-dropdown:hover {
+    border-color: #4CAF50;
+    background-color: #f9f9f9;
+}
+
+.custom-dropdown:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.custom-dropdown option {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
 }
