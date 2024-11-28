@@ -116,6 +116,38 @@ The project was deployed using **Heroku**, Below are the steps taken to deploy:
 
 ---
 
+## ERD
+
+```plaintext
++------------------+       +------------------+       +------------------+
+|      User        |       |    Equipment     |       |      Review      |
++------------------+       +------------------+       +------------------+
+| - id: UUID       |       | - id: UUID       |       | - id: UUID       |
+| - username: str  |       | - name: str      |       | - review_text: str|
+| - email: str     |       | - description: str|      | - rating: int    |
+| - password: str  |       | - manufacturer: str|     | - created_at: datetime|
+| - is_admin: bool |       | - created_at: datetime|  | - updated_at: datetime|
+|                  |       | - updated_at: datetime|  | - user_id: UUID  |
++------------------+       +------------------+       | - equipment_id: UUID|
+  |                          |                          |
+  |                          |                          |
+  |                          |                          |
+  +--------------------------+--------------------------+
+           |
+           |
+           |
+        +------------------+
+        |   Manufacturer   |
+        +------------------+
+        | - id: UUID       |
+        | - name: str      |
+        | - created_at: datetime|
+        | - updated_at: datetime|
+        +------------------+
+```
+
+---
+
 ## Credits
 
 - The login and Registration system for this site is from the following [Video](https://www.youtube.com/watch?v=tUqUdu0Sjyc&t=1938s)
