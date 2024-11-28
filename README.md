@@ -14,7 +14,7 @@ Gear Guardian and Recall Radar is a site for Climbing Personal Protective Equipm
 
 - **User Registration**: Users can create an account to access personalized features.
 - **Login/Logout**: Secure authentication for users.
-- **Browse Recalls**: Users can browse a list of product reviews.
+- **Browse Reviews**: Users can browse a list of product reviews.
 - **Recall Details**: Detailed information about each recall currently done through reviews by manufacture role.
 - **Admin Dashboard**: Admins can manage recalls and user accounts.
 - **CRUD Operations**: Admins can create, read, update, and delete recalls.
@@ -155,6 +155,12 @@ The project was deployed using **Heroku**, Below are the steps taken to deploy:
         | - updated_at: datetime|
         +------------------+
 ```
+
+---
+
+## Lighthouse Report
+
+![lighthouse report](docs/lighthouse.png)
 
 ---
 
