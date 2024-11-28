@@ -4,6 +4,10 @@ Gear Guardian and Recall Radar is a site for Climbing Personal Protective Equipm
 
 [Live Site](https://gear-guardian-3e31e683d207.herokuapp.com/)
 
+![homepage](docs/home.png)
+
+![logged in homepage](docs/lgoinhome.png)
+
 ---
 
 ## Features
@@ -16,6 +20,12 @@ Gear Guardian and Recall Radar is a site for Climbing Personal Protective Equipm
 - **CRUD Operations**: Admins can create, read, update, and delete recalls.
 
 ---
+
+## Wireframes
+
+- ![Scetch of wireframe](docs/20240704_182520.jpg)
+
+- ![Wireframe made of home page](docs/wireframe.png)
 
 ## Technologies used
 
