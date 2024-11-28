@@ -1,4 +1,4 @@
-from pyexpat.errors import messages
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Review, Equipment
@@ -7,17 +7,15 @@ from .forms import ReviewForm
 
 def home_page(request):
     reviews = Review.objects.all()
-    return render(request, "../templates/home_page.html", {"reviews": reviews})
+    return render(request, "home_page.html", {"reviews": reviews})
 
 
 def some_view(request):
     equipment_list = Equipment.objects.all()
     context = {
         'equipment_list': equipment_list,
-        
     }
     return render(request, 'base.html', context)
-
 
 
 @login_required
@@ -30,6 +28,7 @@ def add_review(request, equipment_id):
             review.equipment = equipment
             review.user = request.user
             review.save()
+            messages.success(request, "Review added successfully!")
             return redirect("reviews:equipment_detail", equipment_id=equipment.id)
     else:
         form = ReviewForm()
@@ -43,6 +42,7 @@ def update_review(request, review_id):
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
+            messages.success(request, "Review updated successfully!")
             return redirect(
                 "reviews:equipment_detail", equipment_id=review.equipment.id
             )
@@ -59,6 +59,7 @@ def confirm_delete_review(request, review_id):
     if request.method == "POST":
         if request.user == review.user:
             review.delete()
+            messages.success(request, "Review deleted successfully!")
             return redirect(
                 "reviews:equipment_detail", equipment_id=review.equipment.id
             )

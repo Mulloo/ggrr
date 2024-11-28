@@ -2,7 +2,7 @@
 
 Gear Guardian and Recall Radar is a site for Climbing Personal Protective Equipment reviews as well as a place to find any manufacturer safety notices or equipment recalls.
 
-[Live Site]()
+[Live Site](https://gear-guardian-3e31e683d207.herokuapp.com/)
 
 ---
 
@@ -99,3 +99,31 @@ Manual testing was performed to ensure the application works as expected from a 
 |As an Admin, I want to be able to add, edit, and delete recalls, so that I can keep the recall information up to date. |
 |As an Admin, I want to be able to manage user accounts, so that I can ensure the security and integrity of the website. |
 |As an Admin, I want to be able to send notifications to users, so that I can inform them about new recalls. |
+
+---
+
+## Deployment
+
+The project was deployed using **Heroku**, Below are the steps taken to deploy:
+
+### Deployment Steps
+
+1. **Set up a new Heroku app** and link to the GitHub repository.
+2. **Add PostgreSQL database** and configure environment variables for production.
+3. **Set environment variables** such as `SECRET_KEY`, `DATABASE_URL`, and `COLLECT_STATIC`
+4. **Run migrations** and collect static files using `python manage.py migrate` and `python manage.py collectstatic`.
+5. **Deploy the app** via Heroku’s GitHub integration and automated deployment pipeline.
+
+---
+
+## Credits
+
+- The login and Registration system for this site is from the following [Video](https://www.youtube.com/watch?v=tUqUdu0Sjyc&t=1938s)
+
+---
+
+## Acknowledgments
+
+- I have to take the time to thank my mentor for all the help and support during this project
+
+---
